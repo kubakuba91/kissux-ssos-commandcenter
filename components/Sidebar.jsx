@@ -1,9 +1,9 @@
 function Sidebar({ page, setPage }) {
   const items = [
-    { id: 'overview', label: 'Overview', icon: '🛰️' },
-    { id: 'threat', label: 'Threat Intelligence', icon: '🧭' },
-    { id: 'fleet', label: 'Fleet Health', icon: '📡' },
-    { id: 'reports', label: 'Reports', icon: '📋' },
+    { id: 'overview', label: 'Overview', icon: 'layout-dashboard' },
+    { id: 'threat', label: 'Threat Intelligence', icon: 'compass' },
+    { id: 'fleet', label: 'Fleet Health', icon: 'radio' },
+    { id: 'reports', label: 'Reports', icon: 'file-text' },
   ];
 
   return (
@@ -23,7 +23,7 @@ function Sidebar({ page, setPage }) {
                 : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
             }`}
           >
-            <span className="text-base">{item.icon}</span>
+            <Icon name={item.icon} size={18} className="shrink-0" />
             {item.label}
           </button>
         ))}

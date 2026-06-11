@@ -37,7 +37,7 @@ function ActivityStream({ items }) {
           >
             <div className="flex items-center justify-between gap-2 mb-2">
               <span className="flex items-center gap-2 min-w-0">
-                <span className="shrink-0">{ACTIVITY_ICONS[ev.type]}</span>
+                <Icon name={ACTIVITY_ICONS[ev.type]} size={14} className={`shrink-0 ${ACTIVITY_COLORS[ev.type] || 'text-gray-400'}`} />
                 <span className={`shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded border font-mono ${(typeof ACTIVITY_BADGE_STYLES !== 'undefined' && ACTIVITY_BADGE_STYLES[ev.type]) || 'bg-gray-500/15 text-gray-400 border-gray-500/30'}`}>
                   {((typeof ACTIVITY_LABELS !== 'undefined' && ACTIVITY_LABELS[ev.type]) || ev.type).toUpperCase()}
                 </span>
@@ -60,7 +60,7 @@ function ActivityStream({ items }) {
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-2">
-                <span className="text-lg">{ACTIVITY_ICONS[selected.type]}</span>
+                <Icon name={ACTIVITY_ICONS[selected.type]} size={20} className={ACTIVITY_COLORS[selected.type] || 'text-gray-200'} />
                 <span className={`text-sm font-semibold ${ACTIVITY_COLORS[selected.type] || 'text-gray-200'}`}>
                   {(typeof ACTIVITY_LABELS !== 'undefined' && ACTIVITY_LABELS[selected.type]) || selected.type}
                 </span>

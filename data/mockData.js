@@ -3,14 +3,14 @@
 const SCAM_TYPES = SCAM_WEIGHTS.map(([t]) => t);
 
 const ACTIVITY_ICONS = {
-  call_started: '📞',
-  scam_detected: '⚠️',
-  mimi_intervened: '🛡️',
-  user_complied: '✅',
-  user_ignored: '❌',
-  call_ended: '📴',
-  classification_unknown: '❓',
-  pattern_logged: '🔎',
+  call_started: 'phone',
+  scam_detected: 'alert-triangle',
+  mimi_intervened: 'shield',
+  user_complied: 'check-circle',
+  user_ignored: 'x-circle',
+  call_ended: 'phone-off',
+  classification_unknown: 'help-circle',
+  pattern_logged: 'search',
 };
 
 const ACTIVITY_COLORS = {
