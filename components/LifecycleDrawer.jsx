@@ -187,7 +187,7 @@ function LifecycleDrawer({ source, onClose }) {
           {/* ORIENT */}
           <LcStep icon="crosshair" iconTone="bg-amber-500/15 text-amber-400 border-amber-500/30" title="ORIENT" subtitle="Threat Classification">
             <div className="bg-amber-500/[0.04] border border-amber-500/20 rounded-lg px-4 py-2 divide-y divide-white/[0.04]">
-              <LcRow icon="alert-triangle" label="Threat Type"><span className="font-mono font-semibold text-amber-400">{_snake(lc.scamType)}</span></LcRow>
+              <LcRow icon="alert-triangle" label="Threat Type"><span className="font-mono font-semibold text-amber-400 break-all">{_snake(lc.scamType)}</span></LcRow>
               <LcRow label="Confidence">
                 <div>
                   <div className="text-gray-200">{lc.confidence}% certainty</div>
@@ -226,9 +226,9 @@ function LifecycleDrawer({ source, onClose }) {
                   </li>
                 ))}
               </ul>
-              <div className="flex items-center justify-between pt-3 border-t border-white/5">
-                <span className="text-xs text-gray-500">Campaign</span>
-                <span className="font-mono text-sm text-blue-400">{lc.campaign}</span>
+              <div className="flex items-start justify-between gap-3 pt-3 border-t border-white/5">
+                <span className="text-xs text-gray-500 shrink-0">Campaign</span>
+                <span className="font-mono text-sm text-blue-400 text-right break-all">{lc.campaign}</span>
               </div>
             </div>
           </LcStep>
