@@ -83,6 +83,8 @@ const SEED_MAP_DOTS = (() => {
       region: region.name,
       x: region.x + (Math.random() * 4 - 2),
       y: region.y + (Math.random() * 4 - 2),
+      lat: region.lat + (Math.random() * 1.2 - 0.6),
+      lng: region.lng + (Math.random() * 1.2 - 0.6),
       status: rand(statuses),
       scamType: rand(SCAM_TYPES),
     });
