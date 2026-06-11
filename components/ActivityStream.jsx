@@ -26,18 +26,25 @@ function ActivityStream({ items }) {
         <div className="text-sm font-semibold text-gray-200">Activity Stream</div>
         {paused && <span className="text-[10px] text-gray-500 font-mono">PAUSED</span>}
       </div>
-      <div className="text-xs text-gray-500 mb-3">Raw fleet event stream · click an event for details</div>
-      <div className="space-y-1.5 overflow-y-auto pr-1" style={{ maxHeight: 480 }}>
+      <div className="text-xs text-gray-500 mb-4">Raw fleet event stream · click an event for details</div>
+      <div className="space-y-2.5 overflow-y-auto pr-1" style={{ maxHeight: 480 }}>
         {frozen.map(ev => (
           <button
             type="button"
             key={ev.id}
             onClick={() => setSelected(ev)}
-            className={`w-full flex items-start gap-2 text-xs py-1 px-1 -mx-1 rounded border-b border-white/[0.03] text-left cursor-pointer transition-colors hover:bg-white/[0.04] ${selected && selected.id === ev.id ? 'bg-white/[0.06]' : ''}`}
+            className={`w-full p-3 rounded-md text-left cursor-pointer transition-colors bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-white/10 ${selected && selected.id === ev.id ? 'bg-white/[0.07] border-white/15' : ''}`}
           >
-            <span className="shrink-0 mt-0.5">{ACTIVITY_ICONS[ev.type]}</span>
-            <span className={`flex-1 ${ACTIVITY_COLORS[ev.type] || 'text-gray-300'} leading-relaxed`}>{ev.description}</span>
-            <span className="shrink-0 text-[10px] text-gray-600 font-mono mt-0.5">{timeAgo(ev.timestamp)}</span>
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <span className="flex items-center gap-2 min-w-0">
+                <span className="shrink-0">{ACTIVITY_ICONS[ev.type]}</span>
+                <span className={`shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded border font-mono ${(typeof ACTIVITY_BADGE_STYLES !== 'undefined' && ACTIVITY_BADGE_STYLES[ev.type]) || 'bg-gray-500/15 text-gray-400 border-gray-500/30'}`}>
+                  {((typeof ACTIVITY_LABELS !== 'undefined' && ACTIVITY_LABELS[ev.type]) || ev.type).toUpperCase()}
+                </span>
+              </span>
+              <span className="shrink-0 text-[10px] text-gray-600 font-mono">{timeAgo(ev.timestamp)}</span>
+            </div>
+            <div className="text-xs text-gray-300 leading-relaxed">{ev.description}</div>
           </button>
         ))}
       </div>

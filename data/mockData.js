@@ -24,6 +24,17 @@ const ACTIVITY_COLORS = {
   pattern_logged: 'text-blue-300',
 };
 
+const ACTIVITY_BADGE_STYLES = {
+  call_started: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
+  scam_detected: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+  mimi_intervened: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30',
+  user_complied: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+  user_ignored: 'bg-red-500/15 text-red-400 border-red-500/30',
+  call_ended: 'bg-gray-500/15 text-gray-400 border-gray-500/30',
+  classification_unknown: 'bg-purple-500/15 text-purple-400 border-purple-500/30',
+  pattern_logged: 'bg-blue-500/10 text-blue-300 border-blue-400/30',
+};
+
 const ACTIVITY_LABELS = {
   call_started: 'Call Started',
   scam_detected: 'Scam Detected',
