@@ -24,20 +24,46 @@ const ACTIVITY_COLORS = {
   pattern_logged: 'text-blue-300',
 };
 
-function describeEvent(type, region, scamType, userId) {
-  scamType = scamType || rand(SCAM_TYPES);
-  userId = userId || genUserId();
+const ACTIVITY_LABELS = {
+  call_started: 'Call Started',
+  scam_detected: 'Scam Detected',
+  mimi_intervened: 'Mimi Intervened',
+  user_complied: 'User Complied',
+  user_ignored: 'User Ignored Prompt',
+  call_ended: 'Call Ended',
+  classification_unknown: 'Classification Unknown',
+  pattern_logged: 'Threat Pattern Logged',
+};
+
+function describeEvent(type, regionName, scamType, userId) {
   switch (type) {
-    case 'call_started': return `Call started — ${userId} (${region.name})`;
+    case 'call_started': return `Call started — ${userId} (${regionName})`;
     case 'scam_detected': return `Scam detected — ${scamType} (${userId})`;
     case 'mimi_intervened': return `Mimi intervened — Tier 2 hang-up prompt issued (${userId})`;
     case 'user_complied': return `User complied — call ended safely (${userId})`;
     case 'user_ignored': return `User ignored Mimi's prompt — call continues (${userId})`;
     case 'call_ended': return `Call ended (${userId})`;
     case 'classification_unknown': return `Classification unknown — flagged for review (${userId})`;
-    case 'pattern_logged': return `New threat pattern logged — ${region.name}`;
+    case 'pattern_logged': return `New threat pattern logged — ${regionName}`;
     default: return '';
   }
+}
+
+// Build a fully structured activity event so the description and the
+// fields exposed in the UI (region, scamType, userId) stay consistent.
+function buildActivityEvent(type, region, scamType, userId) {
+  const regionName = region ? region.name : rand(REGIONS).name;
+  scamType = scamType || rand(SCAM_TYPES);
+  userId = userId || genUserId();
+  return {
+    id: genId('EVT'),
+    timestamp: Date.now(),
+    type,
+    region: regionName,
+    scamType,
+    userId,
+    description: describeEvent(type, regionName, scamType, userId),
+  };
 }
 
 // ── Seed activity stream: 40 events spanning the last 2 hours ──
@@ -50,12 +76,7 @@ const SEED_ACTIVITY = (() => {
     t -= Math.floor(Math.random() * 250000) + 20000;
     const type = weightedPick(typeWeights);
     const region = rand(REGIONS);
-    out.push({
-      id: genId('EVT'),
-      timestamp: t,
-      type,
-      description: describeEvent(type, region),
-    });
+    out.push({ ...buildActivityEvent(type, region), timestamp: t });
   }
   return out.sort((a, b) => b.timestamp - a.timestamp);
 })();

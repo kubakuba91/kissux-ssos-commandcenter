@@ -20,12 +20,7 @@ function useSimulation() {
   });
 
   const pushActivity = useCallback((type, region, scamType, userId) => {
-    setActivityStream(prev => [{
-      id: genId('EVT'),
-      timestamp: Date.now(),
-      type,
-      description: describeEvent(type, region, scamType, userId),
-    }, ...prev].slice(0, 60));
+    setActivityStream(prev => [buildActivityEvent(type, region, scamType, userId), ...prev].slice(0, 60));
   }, []);
 
   const pushThreat = useCallback((severity, text) => {
