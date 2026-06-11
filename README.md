@@ -35,7 +35,7 @@ npx serve .
 |------|---------|
 | **Overview** | KPI cards, geographic activity map, live Threat Intelligence Feed, raw Activity Stream |
 | **Threat Intelligence** | Active threat patterns, scam-type breakdown chart, unknown-classification log (operator can classify) |
-| **Fleet Health** | 30-day Mimi performance trend, classification-confidence histogram, device coverage, model-feedback summary |
+| **Agent Health** | 30-day Mimi performance trend, classification-confidence histogram, device coverage, model-feedback summary |
 | **Reports** | Filed/draft agency reports + "New Report" modal (rare, agency-initiated workflow) |
 
 ## Live simulation engine
@@ -70,7 +70,7 @@ components/
   ThreatFeed.jsx
   ActivityStream.jsx
   ThreatIntelligencePage.jsx
-  FleetHealthPage.jsx
+  AgentHealthPage.jsx
   ReportsPage.jsx
 App.jsx                    # sidebar nav + page routing (useState)
 ```

@@ -166,7 +166,7 @@ const SEED_UNKNOWN_LOG = (() => {
 })();
 
 // ── 30-day fleet performance data (with a degradation event mid-period) ──
-const FLEET_PERFORMANCE = (() => {
+const AGENT_PERFORMANCE = (() => {
   const labels = [];
   const interventionSuccess = [];
   const resolutionRate = [];

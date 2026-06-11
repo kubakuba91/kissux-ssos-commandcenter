@@ -19,7 +19,7 @@ function App() {
   const titles = {
     overview: 'Overview',
     threat: 'Threat Intelligence',
-    fleet: 'Fleet Health',
+    fleet: 'Agent Health',
     reports: 'Reports',
   };
 
@@ -33,7 +33,7 @@ function App() {
         </div>
         {page === 'overview' && <OverviewPage sim={sim} />}
         {page === 'threat' && <ThreatIntelligencePage threatFeed={sim.threatFeed} unknownLog={sim.unknownLog} setUnknownLog={sim.setUnknownLog} />}
-        {page === 'fleet' && <FleetHealthPage />}
+        {page === 'fleet' && <AgentHealthPage />}
         {page === 'reports' && <ReportsPage />}
       </main>
     </div>

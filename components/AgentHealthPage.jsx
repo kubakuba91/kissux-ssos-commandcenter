@@ -5,11 +5,11 @@ function PerformanceChart() {
     const chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: FLEET_PERFORMANCE.labels,
+        labels: AGENT_PERFORMANCE.labels,
         datasets: [
-          { label: 'Intervention Success', data: FLEET_PERFORMANCE.interventionSuccess, borderColor: '#3fb950', backgroundColor: 'transparent', tension: 0.3, pointRadius: 0 },
-          { label: 'Resolution Rate', data: FLEET_PERFORMANCE.resolutionRate, borderColor: '#3b82f6', backgroundColor: 'transparent', tension: 0.3, pointRadius: 0 },
-          { label: 'Unknown Classification', data: FLEET_PERFORMANCE.unknownRate, borderColor: '#fbbf24', backgroundColor: 'transparent', tension: 0.3, pointRadius: 0 },
+          { label: 'Intervention Success', data: AGENT_PERFORMANCE.interventionSuccess, borderColor: '#3fb950', backgroundColor: 'transparent', tension: 0.3, pointRadius: 0 },
+          { label: 'Resolution Rate', data: AGENT_PERFORMANCE.resolutionRate, borderColor: '#3b82f6', backgroundColor: 'transparent', tension: 0.3, pointRadius: 0 },
+          { label: 'Unknown Classification', data: AGENT_PERFORMANCE.unknownRate, borderColor: '#fbbf24', backgroundColor: 'transparent', tension: 0.3, pointRadius: 0 },
         ],
       },
       options: {
@@ -66,7 +66,7 @@ function StatBox({ label, value, sub }) {
   );
 }
 
-function FleetHealthPage() {
+function AgentHealthPage() {
   return (
     <div className="space-y-6">
       <div className="bg-[#1a1d27] border border-white/10 rounded-lg p-4">

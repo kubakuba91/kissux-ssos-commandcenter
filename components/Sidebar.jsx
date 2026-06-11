@@ -2,7 +2,7 @@ function Sidebar({ page, setPage }) {
   const items = [
     { id: 'overview', label: 'Overview', icon: 'layout-dashboard' },
     { id: 'threat', label: 'Threat Intelligence', icon: 'compass' },
-    { id: 'fleet', label: 'Fleet Health', icon: 'radio' },
+    { id: 'fleet', label: 'Agent Health', icon: 'radio' },
     { id: 'reports', label: 'Reports', icon: 'file-text' },
   ];
 
