@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="flex min-h-screen bg-[#0f1117] text-gray-100">
       <Sidebar page={page} setPage={setPage} />
-      <main className="flex-1 p-6 max-w-[1600px]">
+      <main className="flex-1 min-w-0 p-6 max-w-[1600px]">
         <div className="mb-6">
           <h1 className="text-xl font-bold text-white">{titles[page]}</h1>
           <div className="text-xs text-gray-500 font-mono mt-1">SSOS Command Center · Fleet-scale Mimi oversight</div>

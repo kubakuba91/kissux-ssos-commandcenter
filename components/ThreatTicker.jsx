@@ -32,7 +32,7 @@ function ThreatTicker({ items }) {
       </div>
 
       <div
-        className="relative flex-1 overflow-hidden ticker-mask"
+        className="relative flex-1 min-w-0 overflow-hidden ticker-mask"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
