@@ -105,7 +105,7 @@ function ReportsPage() {
         {reports.map(r => (
           <div key={r.id} className="bg-[#1a1d27] border border-white/10 rounded-lg p-4 flex flex-col gap-2">
             <div className="flex items-start justify-between">
-              <div className="font-mono text-sm text-gray-200">{r.seniorId}</div>
+              <CodeTag code={r.seniorId} className="text-sm text-gray-200" />
               <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border font-mono ${REPORT_STATUS_STYLES[r.status]}`}>{r.status.toUpperCase()}</span>
             </div>
             <div className="text-xs text-gray-400">{r.scamType}</div>

@@ -60,5 +60,27 @@ function weightedPick(weights) {
   return weights[weights.length - 1][0];
 }
 
-function genUserId() { return 'USR-' + Math.floor(1000 + Math.random() * 9000); }
-function genId(prefix) { return prefix + '-' + Math.floor(100000 + Math.random() * 900000); }
+// Monotonic per-prefix counters so generated IDs are guaranteed unique
+// (and deterministic across reloads, since creation order is fixed).
+const _idCounters = {};
+function nextSeq(prefix) {
+  _idCounters[prefix] = (_idCounters[prefix] || 0) + 1;
+  return _idCounters[prefix];
+}
+function genUserId() { return 'USR-' + String(nextSeq('USR')).padStart(4, '0'); }
+function genId(prefix) { return prefix + '-' + String(nextSeq(prefix)).padStart(6, '0'); }
+
+// Human-readable meaning of each ID prefix, surfaced as tooltips in the UI.
+const CODE_DESCRIPTIONS = {
+  USR: 'Protected senior on the call (anonymized user ID)',
+  CALL: 'Individual call handled by Mimi',
+  EVT: 'Activity-stream event',
+  TI: 'Threat-intelligence observation',
+  PAT: 'Detected threat pattern',
+  UNK: 'Unknown-classification call flagged for review',
+  RPT: 'Report filed to an agency',
+};
+function describeCode(code) {
+  if (!code) return '';
+  return CODE_DESCRIPTIONS[String(code).split('-')[0]] || '';
+}

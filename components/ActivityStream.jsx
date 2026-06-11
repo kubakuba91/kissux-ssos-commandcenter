@@ -91,7 +91,7 @@ function ActivityStream({ items }) {
               {selected.userId && (
                 <div className="flex justify-between gap-3">
                   <span className="text-gray-500">User</span>
-                  <span className="text-gray-300 font-mono">{selected.userId}</span>
+                  <CodeTag code={selected.userId} className="text-gray-300" />
                 </div>
               )}
               <div className="flex justify-between gap-3">
@@ -100,7 +100,7 @@ function ActivityStream({ items }) {
               </div>
               <div className="flex justify-between gap-3">
                 <span className="text-gray-500">Event ID</span>
-                <span className="text-gray-300 font-mono">{selected.id}</span>
+                <CodeTag code={selected.id} className="text-gray-300" />
               </div>
             </div>
           </div>
