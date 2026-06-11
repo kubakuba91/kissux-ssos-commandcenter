@@ -31,8 +31,16 @@
       -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
       mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
     }
+    @keyframes drawer-in {
+      from { transform: translateX(100%); }
+      to   { transform: translateX(0); }
+    }
+    .drawer-in { animation: drawer-in 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    .fade-in { animation: fade-in 0.2s ease-out; }
     /* Leaflet dark-theme overrides */
     .leaflet-container { background: #0f1117; font-family: inherit; outline: none; }
+    .leaflet-interactive { cursor: pointer; }
     .leaflet-popup-content-wrapper, .leaflet-popup-tip {
       background: #0f1117; color: #e5e7eb; border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
@@ -57,6 +65,7 @@
   <script type="text/babel" src="hooks/useSimulation.js"></script>
   <script type="text/babel" src="components/Icon.jsx"></script>
   <script type="text/babel" src="components/CodeTag.jsx"></script>
+  <script type="text/babel" src="components/LifecycleDrawer.jsx"></script>
   <script type="text/babel" src="components/Sidebar.jsx"></script>
   <script type="text/babel" src="components/KpiCards.jsx"></script>
   <script type="text/babel" src="components/GeoMap.jsx"></script>

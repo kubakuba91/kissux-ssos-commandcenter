@@ -1,12 +1,15 @@
 function OverviewPage({ sim }) {
+  const { useState } = React;
+  const [selected, setSelected] = useState(null);
   return (
     <div className="space-y-6">
       <ThreatTicker items={sim.threatFeed} />
       <KpiCards kpis={sim.kpis} />
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        <GeoMap mapDots={sim.mapDots} />
-        <ActivityStream items={sim.activityStream} />
+        <GeoMap mapDots={sim.mapDots} onSelectCall={setSelected} />
+        <ActivityStream items={sim.activityStream} onSelect={setSelected} selectedId={selected && selected.id} />
       </div>
+      <LifecycleDrawer source={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }

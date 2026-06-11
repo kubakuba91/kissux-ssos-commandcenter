@@ -17,11 +17,15 @@ const TILE_URL = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
 const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-function GeoMap({ mapDots }) {
+function GeoMap({ mapDots, onSelectCall }) {
   const { useRef, useEffect } = React;
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const markerLayerRef = useRef(null);
+  // Keep the latest callback reachable from marker handlers without
+  // rebuilding the map/markers when the prop identity changes.
+  const onSelectRef = useRef(onSelectCall);
+  onSelectRef.current = onSelectCall;
 
   // Initialise the Leaflet map once.
   useEffect(() => {
@@ -83,12 +87,8 @@ function GeoMap({ mapDots }) {
         fillColor: color,
         fillOpacity: 0.85,
       });
-      marker.bindPopup(
-        `<div style="font-weight:600;margin-bottom:2px;">${dot.region}</div>` +
-        `<div style="color:#9ca3af;">${dot.scamType}</div>` +
-        `<div style="color:${color};margin-top:2px;">${STATUS_LABELS_MAP[dot.status] || dot.status}</div>`
-      );
       marker.bindTooltip(`${dot.region} · ${dot.scamType}`, { direction: 'top', opacity: 0.9 });
+      marker.on('click', () => { if (onSelectRef.current) onSelectRef.current(dot); });
       layer.addLayer(marker);
     }
   }, [mapDots]);
