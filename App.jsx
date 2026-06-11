@@ -1,10 +1,10 @@
 function OverviewPage({ sim }) {
   return (
     <div className="space-y-6">
+      <ThreatTicker items={sim.threatFeed} />
       <KpiCards kpis={sim.kpis} />
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <GeoMap mapDots={sim.mapDots} />
-        <ThreatFeed items={sim.threatFeed} />
         <ActivityStream items={sim.activityStream} />
       </div>
     </div>

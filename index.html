@@ -22,6 +22,15 @@
       50% { border-color: rgba(245, 158, 11, 0.9); }
     }
     .animate-pulse-border { animation: pulse-border 2s ease-in-out infinite; }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-track { animation: ticker-scroll 50s linear infinite; will-change: transform; }
+    .ticker-mask {
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+      mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+    }
     /* Leaflet dark-theme overrides */
     .leaflet-container { background: #0f1117; font-family: inherit; outline: none; }
     .leaflet-popup-content-wrapper, .leaflet-popup-tip {
@@ -50,6 +59,7 @@
   <script type="text/babel" src="components/KpiCards.jsx"></script>
   <script type="text/babel" src="components/GeoMap.jsx"></script>
   <script type="text/babel" src="components/ThreatFeed.jsx"></script>
+  <script type="text/babel" src="components/ThreatTicker.jsx"></script>
   <script type="text/babel" src="components/ActivityStream.jsx"></script>
   <script type="text/babel" src="components/ThreatIntelligencePage.jsx"></script>
   <script type="text/babel" src="components/FleetHealthPage.jsx"></script>
