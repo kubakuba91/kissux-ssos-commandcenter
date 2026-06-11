@@ -45,7 +45,22 @@ function GeoMap({ mapDots }) {
     markerLayerRef.current = L.layerGroup().addTo(map);
     mapRef.current = map;
 
+    // The container's final size can settle after init (e.g. Tailwind CDN
+    // applying styles asynchronously), which leaves Leaflet at 0 height.
+    // Recalculate once on the next frame and on any later size change.
+    const invalidate = () => map.invalidateSize();
+    const raf = requestAnimationFrame(invalidate);
+    const t = setTimeout(invalidate, 250);
+    let ro;
+    if (typeof ResizeObserver !== 'undefined') {
+      ro = new ResizeObserver(invalidate);
+      ro.observe(containerRef.current);
+    }
+
     return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+      if (ro) ro.disconnect();
       map.remove();
       mapRef.current = null;
       markerLayerRef.current = null;
@@ -84,7 +99,8 @@ function GeoMap({ mapDots }) {
       <div className="text-xs text-gray-500 mb-3">Live call distribution by region</div>
       <div
         ref={containerRef}
-        className="relative w-full aspect-[16/10] rounded-md overflow-hidden border border-white/5 z-0"
+        className="relative w-full rounded-md overflow-hidden border border-white/5 z-0"
+        style={{ width: '100%', aspectRatio: '16 / 10', minHeight: 320 }}
       />
       <div className="flex items-center gap-4 mt-3 text-xs text-gray-500">
         <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Resolved</div>
