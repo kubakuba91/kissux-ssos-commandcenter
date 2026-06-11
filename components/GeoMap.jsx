@@ -94,13 +94,13 @@ function GeoMap({ mapDots }) {
   }, [mapDots]);
 
   return (
-    <div className="bg-[#1a1d27] border border-white/10 rounded-lg p-4 flex flex-col">
+    <div className="bg-[#1a1d27] border border-white/10 rounded-lg p-4 flex flex-col h-full">
       <div className="text-sm font-semibold text-gray-200 mb-1">Geographic Activity</div>
       <div className="text-xs text-gray-500 mb-3">Live call distribution by region</div>
       <div
         ref={containerRef}
-        className="relative w-full rounded-md overflow-hidden border border-white/5 z-0"
-        style={{ width: '100%', aspectRatio: '16 / 10', minHeight: 320 }}
+        className="relative w-full flex-1 rounded-md overflow-hidden border border-white/5 z-0"
+        style={{ width: '100%', minHeight: 320 }}
       />
       <div className="flex items-center gap-4 mt-3 text-xs text-gray-500">
         <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Resolved</div>
